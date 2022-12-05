@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Controller{
+    - GameState gameState
+    + getState()
+}
+enum GameState{
+    START
+    END
+    PLAYING
+    PAUSE
+}
+
+GameState <|-- Controller
+@enduml

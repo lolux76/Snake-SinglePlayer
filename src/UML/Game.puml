@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Game {
+    -- Attributs --
+    - int turn
+    - int maxTurn
+    - boolean isRunning
+    - Thread thread
+    - long time
+    - final PropertyChangeSupport support
+
+    --Getters et Setters --
+    + int getTurn()
+    + void setTime(long time)
+    + long getTime()
+
+    -- Constructeur --
+    + Game(int maxTurn, long time)
+    -- Méthodes --
+    + void init()
+    + void step()
+    + void pause()
+    + void run()
+    + void launch()
+    + void addPropertyChangeListener(String property, PropertyChangeListener listener)
+    + void addPropertyChangeListener(PropertyChangeListener listener)
+    + void removePropertyChangeListener(String property, PropertyChangeListener listener)
+    + void changeTurn()
+    {abstract} void initializeGame()
+    {abstract} void takeTurn()
+    {abstract} void gameOver()
+    {abstract} boolean gameContinue()
+}
+
+class SimpleGame{
+
++ SimpleGame(int maxTurn, long time)
+
+    ~ void initializeGame()
+    ~ void takeTurn()
+    ~ void gameOver()
+    ~ boolean gameContinue()
+}
+
+SimpleGame <|-- Game
+
+@enduml

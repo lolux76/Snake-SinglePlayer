@@ -1,0 +1,31 @@
+@startuml
+class fr.mgrimaud.snake.model.agent.strategy.RandomStrategy {
++ AgentAction execute()
+}
+interface fr.mgrimaud.snake.model.agent.strategy.Strategy {
++ AgentAction execute()
+}
+abstract class fr.mgrimaud.snake.model.agent.Agent {
+- Strategy strategy
+- AgentAction lastAction
++ void changeStrategy(Strategy)
+- AgentAction executeStrategy()
+- void moveAgent()
+- boolean isLegalMove(AgentAction)
++ void takeTurn()
++ Position getPosition()
++ AgentAction getLastAction()
+}
+class fr.mgrimaud.snake.model.agent.Snake {
+- ColorSnake color
+- ArrayList<SnakeBody> snakeBodies
++ ArrayList<SnakeBody> getSnakeBodies()
++ void addSnakeBodies(SnakeBody)
++ ColorSnake getColor()
+}
+
+
+fr.mgrimaud.snake.model.agent.strategy.Strategy <|.. fr.mgrimaud.snake.model.agent.strategy.RandomStrategy
+fr.mgrimaud.snake.model.agent.Entity <|-- fr.mgrimaud.snake.model.agent.Agent
+fr.mgrimaud.snake.model.agent.Agent <|-- fr.mgrimaud.snake.model.agent.Snake
+@enduml

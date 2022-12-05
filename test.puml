@@ -1,0 +1,116 @@
+@startuml
+class fr.mgrimaud.snake.model.agent.strategy.RandomStrategy {
++ AgentAction execute()
+}
+interface fr.mgrimaud.snake.model.agent.strategy.Strategy {
++ AgentAction execute()
+}
+abstract class fr.mgrimaud.snake.model.agent.Agent {
+- Strategy strategy
+- AgentAction lastAction
++ void changeStrategy(Strategy)
+- AgentAction executeStrategy()
+- void moveAgent()
+- boolean isLegalMove(AgentAction)
++ void takeTurn()
++ Position getPosition()
++ AgentAction getLastAction()
+}
+abstract class fr.mgrimaud.snake.model.agent.Item {
+}
+class fr.mgrimaud.snake.model.input.InputMap {
+- {static} long serialVersionUID
+- String filename
+- int size_x
+- int size_y
+- boolean[][] walls
+- ArrayList<FeaturesSnake> start_snakes
+- ArrayList<FeaturesItem> start_items
+- BufferedReader buffer
+~ ColorSnake[] colorSnake
++ int getSizeX()
++ int getSizeY()
++ String getFilename()
++ boolean[][] get_walls()
++ ArrayList<FeaturesSnake> getStart_snakes()
++ ArrayList<FeaturesItem> getStart_items()
+}
+class fr.mgrimaud.snake.model.agent.Snake {
+- ColorSnake color
+- ArrayList<SnakeBody> snakeBodies
++ ArrayList<SnakeBody> getSnakeBodies()
++ void addSnakeBodies(SnakeBody)
++ ColorSnake getColor()
+}
+class fr.mgrimaud.snake.model.agent.Apple {
+}
+class fr.mgrimaud.snake.model.agent.EntityFactory {
++ Snake createAgent(Position,AgentType,SnakeGame,ColorSnake)
++ Item createAgent(Position,ItemType,SnakeGame)
+}
+class fr.mgrimaud.snake.model.agent.SnakeBody {
+- ColorSnake color
++ ColorSnake getColor()
+}
+class fr.mgrimaud.snake.model.game.SnakeGame {
+- ArrayList<Snake> snakes
+- ArrayList<Item> items
+- boolean[][] walls
+- InputMap inputMap
+- EntityFactory entityFactory
+~ void initializeGame()
+~ void takeTurn()
+~ void gameOver()
+~ boolean gameContinue()
++ boolean[][] getWalls()
++ ArrayList<Snake> getSnakes()
++ ArrayList<Item> getItems()
++ EntityFactory getEntityFactory()
+}
+abstract class fr.mgrimaud.snake.model.game.Game {
+- int turn
+- int maxTurn
+- boolean isRunning
+- Thread thread
+- long time
+- PropertyChangeSupport support
++ int getTurn()
++ void setTime(long)
++ long getTime()
++ void init()
++ void step()
++ void pause()
++ void run()
++ void launch()
++ void addPropertyChangeListener(String,PropertyChangeListener)
++ void addPropertyChangeListener(PropertyChangeListener)
++ void removePropertyChangeListener(String,PropertyChangeListener)
++ void changeTurn()
+~ {abstract}void initializeGame()
+~ {abstract}void takeTurn()
+~ {abstract}void gameOver()
+~ {abstract}boolean gameContinue()
+}
+class fr.mgrimaud.snake.model.game.SimpleGame {
+~ void initializeGame()
+~ void takeTurn()
+~ void gameOver()
+~ boolean gameContinue()
+}
+abstract class fr.mgrimaud.snake.model.agent.Entity {
+~ Position position
+~ SnakeGame game
+}
+
+
+fr.mgrimaud.snake.model.agent.strategy.Strategy <|.. fr.mgrimaud.snake.model.agent.strategy.RandomStrategy
+fr.mgrimaud.snake.model.agent.Entity <|-- fr.mgrimaud.snake.model.agent.Agent
+fr.mgrimaud.snake.model.agent.Entity <|-- fr.mgrimaud.snake.model.agent.Item
+java.io.Serializable <|.. fr.mgrimaud.snake.model.input.InputMap
+fr.mgrimaud.snake.model.agent.Agent <|-- fr.mgrimaud.snake.model.agent.Snake
+fr.mgrimaud.snake.model.agent.Item <|-- fr.mgrimaud.snake.model.agent.Apple
+fr.mgrimaud.snake.model.agent.Agent <|-- fr.mgrimaud.snake.model.agent.SnakeBody
+fr.mgrimaud.snake.model.game.Game <|-- fr.mgrimaud.snake.model.game.SnakeGame
+fr.mgrimaud.snake.model.game.Runnable <|.. fr.mgrimaud.snake.model.game.Game
+fr.mgrimaud.snake.model.game.Game <|-- fr.mgrimaud.snake.model.game.SimpleGame
+@enduml

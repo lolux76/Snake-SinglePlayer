@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"fr.mgrimaud.snake.game","l":"Game"},{"p":"fr.mgrimaud.snake.game","l":"SimpleGame"},{"p":"fr.mgrimaud.snake.test","l":"Test"},{"p":"fr.mgrimaud.snake.view","l":"ViewCommand"},{"p":"fr.mgrimaud.snake.view","l":"ViewSimpleGame"}]

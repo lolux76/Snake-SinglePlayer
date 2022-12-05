@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.mgrimaud.snake.game"},{"l":"fr.mgrimaud.snake.test"},{"l":"fr.mgrimaud.snake.view"}]
